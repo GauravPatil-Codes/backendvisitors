@@ -1,5 +1,7 @@
 package com.minister.visitorsapp.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,6 +54,12 @@ public class VisitorsController {
 	public Object CreateVisitors (@PathVariable("_id") String id, @RequestBody Visitors visitors){
 		
 		return visitorsServiceImpl.updateVisitorById(id, visitors);
+	}
+	
+	@GetMapping("/getvisitorbyid/{_id}")
+	public Optional<Visitors> GetVisitorsById (@PathVariable("_id") String id) {
+		
+		return visitorsServiceImpl.getVisitorsById(id);
 	}
 
 }

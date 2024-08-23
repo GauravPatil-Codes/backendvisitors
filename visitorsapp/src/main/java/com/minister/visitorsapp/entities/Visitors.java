@@ -31,6 +31,7 @@ public class Visitors {
     private String grievanceDetails;
     
     private String status; // Pending, Approved, Rejected
+    private String role; //admin, visitor
 
     @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -152,6 +153,14 @@ public class Visitors {
 		this.status = status;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
@@ -170,8 +179,8 @@ public class Visitors {
 
 	public Visitors(String id, String fullName, int age, String gender, String contactNumber, String emailAddress,
 			String purposeOfVisit, LocalDateTime appointmentDateTime, String departmentName, String organizationName,
-			String designation, String officialAddress, String grievanceDetails, String status, LocalDateTime createdAt,
-			LocalDateTime updatedAt) {
+			String designation, String officialAddress, String grievanceDetails, String status, String role,
+			LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
@@ -187,6 +196,7 @@ public class Visitors {
 		this.officialAddress = officialAddress;
 		this.grievanceDetails = grievanceDetails;
 		this.status = status;
+		this.role = role;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -202,9 +212,11 @@ public class Visitors {
 				+ ", contactNumber=" + contactNumber + ", emailAddress=" + emailAddress + ", purposeOfVisit="
 				+ purposeOfVisit + ", appointmentDateTime=" + appointmentDateTime + ", departmentName=" + departmentName
 				+ ", organizationName=" + organizationName + ", designation=" + designation + ", officialAddress="
-				+ officialAddress + ", grievanceDetails=" + grievanceDetails + ", status=" + status + ", createdAt="
-				+ createdAt + ", updatedAt=" + updatedAt + "]";
+				+ officialAddress + ", grievanceDetails=" + grievanceDetails + ", status=" + status + ", role=" + role
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
+
+	
     
     
 }

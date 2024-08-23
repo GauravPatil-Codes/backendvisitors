@@ -52,6 +52,7 @@ public class VisitorsServiceImpl implements VisitorsService {
 	        existingVisitor.setOfficialAddress(visitors.getOfficialAddress());
 	        existingVisitor.setGrievanceDetails(visitors.getGrievanceDetails());
 	        existingVisitor.setStatus(visitors.getStatus());
+	        existingVisitor.setRole(visitors.getRole());
 
 	        // Automatically update the updatedAt timestamp
 	        existingVisitor.setUpdatedAt(LocalDateTime.now());
@@ -64,6 +65,11 @@ public class VisitorsServiceImpl implements VisitorsService {
 	        visitors.setUpdatedAt(LocalDateTime.now()); // Set updatedAt for new visitor
 	        return visitorsRepository.save(visitors);
 	    }
+	}
+
+	public Optional<Visitors> getVisitorsById(String id) {
+		// TODO Auto-generated method stub
+		return visitorsRepository.findById(id);
 	}
 
 
