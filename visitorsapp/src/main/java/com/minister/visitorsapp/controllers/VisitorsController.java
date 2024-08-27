@@ -70,6 +70,11 @@ public class VisitorsController {
         return visitorsServiceImpl.getAllPendingVisitors(pageable);
     }
 
+	@GetMapping("/approved")
+    public Page<Visitors> getAllApprovedVisitors(Pageable pageable) {
+        return visitorsServiceImpl.getAllApprovedVisitors(pageable);
+    }
+
     @GetMapping("/rejected")
     public Page<Visitors> getAllRejectedVisitors(Pageable pageable) {
         return visitorsServiceImpl.getAllRejectedVisitors(pageable);

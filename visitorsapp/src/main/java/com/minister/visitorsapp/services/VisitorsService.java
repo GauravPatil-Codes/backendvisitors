@@ -19,6 +19,7 @@ public interface VisitorsService {
 	public Optional<Visitors> getVisitorsById(String id);
 	boolean isTimeSlotAvailable(LocalDateTime start, LocalDateTime end, String excludeVisitorId);
 	Page<Visitors> getAllPendingVisitors(Pageable pageable);
+	Page<Visitors>getAllApprovedVisitors(Pageable pageable);
 	Page<Visitors> getAllRejectedVisitors(Pageable pageable);
 	Page<Visitors> getPastVisitors(LocalDateTime from, LocalDateTime to, Pageable pageable);
 }

@@ -109,6 +109,10 @@ public class VisitorsServiceImpl implements VisitorsService {
 	        return visitorsRepository.findByStatus("Pending", pageable);
 	    }
 		@Override
+	    public Page<Visitors> getAllApprovedVisitors(Pageable pageable) {
+	        return visitorsRepository.findByStatus("Approved", pageable);
+	    }
+		@Override
 	    public Page<Visitors> getAllRejectedVisitors(Pageable pageable) {
 	        return visitorsRepository.findByStatus("Rejected", pageable);
 	    }
