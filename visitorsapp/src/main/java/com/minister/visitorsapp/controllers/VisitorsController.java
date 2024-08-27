@@ -1,10 +1,13 @@
 package com.minister.visitorsapp.controllers;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +39,7 @@ public class VisitorsController {
 	@GetMapping("/getallvisitors")
 	@ResponseBody
 	public ResponseEntity<PaginatedResponse<Visitors>> getAllVisitors(
-	        @RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "1") int page,
 	        @RequestParam(defaultValue = "10") int size) {
 
 	    Page<Visitors> visitorPage = visitorsServiceImpl.getAllVisitors(PageRequest.of(page, size));
@@ -61,5 +64,23 @@ public class VisitorsController {
 		
 		return visitorsServiceImpl.getVisitorsById(id);
 	}
+	
+	@GetMapping("/pending")
+    public Page<Visitors> getAllPendingVisitors(Pageable pageable) {
+        return visitorsServiceImpl.getAllPendingVisitors(pageable);
+    }
+
+    @GetMapping("/rejected")
+    public Page<Visitors> getAllRejectedVisitors(Pageable pageable) {
+        return visitorsServiceImpl.getAllRejectedVisitors(pageable);
+    }
+
+    @GetMapping("/past")
+    public Page<Visitors> getPastVisitors(
+        @RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
+        @RequestParam("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to,
+        Pageable pageable) {
+        return visitorsServiceImpl.getPastVisitors(from, to, pageable);
+    }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @Document
 public class Visitors {
@@ -22,7 +23,10 @@ public class Visitors {
     private String purposeOfVisit;
     
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime appointmentDateTime;
+    private LocalDateTime appointmentstartDateTime;
+    
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime appointmentendDateTime;
     
     private String departmentName;
     private String organizationName;
@@ -32,6 +36,11 @@ public class Visitors {
     
     private String status; // Pending, Approved, Rejected
     private String role; //admin, visitor
+    private String remark; 
+    private int meetingDuration; //minutes
+    private String document;
+    private String password;
+    
 
     @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -97,12 +106,20 @@ public class Visitors {
 		this.purposeOfVisit = purposeOfVisit;
 	}
 
-	public LocalDateTime getAppointmentDateTime() {
-		return appointmentDateTime;
+	public LocalDateTime getAppointmentstartDateTime() {
+		return appointmentstartDateTime;
 	}
 
-	public void setAppointmentDateTime(LocalDateTime appointmentDateTime) {
-		this.appointmentDateTime = appointmentDateTime;
+	public void setAppointmentstartDateTime(LocalDateTime appointmentstartDateTime) {
+		this.appointmentstartDateTime = appointmentstartDateTime;
+	}
+
+	public LocalDateTime getAppointmentendDateTime() {
+		return appointmentendDateTime;
+	}
+
+	public void setAppointmentendDateTime(LocalDateTime appointmentendDateTime) {
+		this.appointmentendDateTime = appointmentendDateTime;
 	}
 
 	public String getDepartmentName() {
@@ -161,6 +178,38 @@ public class Visitors {
 		this.role = role;
 	}
 
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public int getMeetingDuration() {
+		return meetingDuration;
+	}
+
+	public void setMeetingDuration(int meetingDuration) {
+		this.meetingDuration = meetingDuration;
+	}
+
+	public String getDocument() {
+		return document;
+	}
+
+	public void setDocument(String document) {
+		this.document = document;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
@@ -178,9 +227,10 @@ public class Visitors {
 	}
 
 	public Visitors(String id, String fullName, int age, String gender, String contactNumber, String emailAddress,
-			String purposeOfVisit, LocalDateTime appointmentDateTime, String departmentName, String organizationName,
-			String designation, String officialAddress, String grievanceDetails, String status, String role,
-			LocalDateTime createdAt, LocalDateTime updatedAt) {
+			String purposeOfVisit, LocalDateTime appointmentstartDateTime, LocalDateTime appointmentendDateTime,
+			String departmentName, String organizationName, String designation, String officialAddress,
+			String grievanceDetails, String status, String role, String remark, int meetingDuration,
+			String document, String password, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
@@ -189,7 +239,8 @@ public class Visitors {
 		this.contactNumber = contactNumber;
 		this.emailAddress = emailAddress;
 		this.purposeOfVisit = purposeOfVisit;
-		this.appointmentDateTime = appointmentDateTime;
+		this.appointmentstartDateTime = appointmentstartDateTime;
+		this.appointmentendDateTime = appointmentendDateTime;
 		this.departmentName = departmentName;
 		this.organizationName = organizationName;
 		this.designation = designation;
@@ -197,6 +248,10 @@ public class Visitors {
 		this.grievanceDetails = grievanceDetails;
 		this.status = status;
 		this.role = role;
+		this.remark = remark;
+		this.meetingDuration = meetingDuration;
+		this.document = document;
+		this.password = password;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -210,12 +265,15 @@ public class Visitors {
 	public String toString() {
 		return "Visitors [id=" + id + ", fullName=" + fullName + ", age=" + age + ", gender=" + gender
 				+ ", contactNumber=" + contactNumber + ", emailAddress=" + emailAddress + ", purposeOfVisit="
-				+ purposeOfVisit + ", appointmentDateTime=" + appointmentDateTime + ", departmentName=" + departmentName
+				+ purposeOfVisit + ", appointmentstartDateTime=" + appointmentstartDateTime
+				+ ", appointmentendDateTime=" + appointmentendDateTime + ", departmentName=" + departmentName
 				+ ", organizationName=" + organizationName + ", designation=" + designation + ", officialAddress="
 				+ officialAddress + ", grievanceDetails=" + grievanceDetails + ", status=" + status + ", role=" + role
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+				+ ", remark=" + remark + ", meetingDuration=" + meetingDuration + ", document=" + document
+				+ ", password=" + password + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 
+	
 	
     
     
