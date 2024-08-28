@@ -39,7 +39,7 @@ public class VisitorsController {
 	@GetMapping("/getallvisitors")
 	@ResponseBody
 	public ResponseEntity<PaginatedResponse<Visitors>> getAllVisitors(
-	        @RequestParam(defaultValue = "1") int page,
+	        @RequestParam(defaultValue = "0") int page,
 	        @RequestParam(defaultValue = "10") int size) {
 
 	    Page<Visitors> visitorPage = visitorsServiceImpl.getAllVisitors(PageRequest.of(page, size));
