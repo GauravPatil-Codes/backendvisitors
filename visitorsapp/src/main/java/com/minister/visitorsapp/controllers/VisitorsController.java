@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.minister.visitorsapp.entities.Visitors;
 import com.minister.visitorsapp.helpers.PaginatedResponse;
 import com.minister.visitorsapp.services.VisitorsServiceImpl;
+
 
 @RestController
 public class VisitorsController {
@@ -57,6 +59,7 @@ public class VisitorsController {
 	public Object CreateVisitors (@PathVariable("_id") String id, @RequestBody Visitors visitors){
 		
 		return visitorsServiceImpl.updateVisitorById(id, visitors);
+	
 	}
 	
 	@GetMapping("/getvisitorbyid/{_id}")

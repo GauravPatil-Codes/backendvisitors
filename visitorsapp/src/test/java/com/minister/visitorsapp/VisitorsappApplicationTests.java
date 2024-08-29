@@ -14,25 +14,4 @@ class VisitorsappApplicationTests {
 	void contextLoads() {
 	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(VisitorsappApplicationTests.class, args);
-	}
-	  @Bean
-	    public WebMvcConfigurer configure() {
-	        return new WebMvcConfigurer() {
-	            @Override
-	            public void addCorsMappings(CorsRegistry reg) {
-	                reg.addMapping("/**")
-	                   .allowedOrigins(
-	                       "http://localhost:3000",
-	                       "http://localhost",
-	                       "http://localhost:8080"
-	                      	                   )
-	                   .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
-	                   .allowedHeaders("*")
-	                   .allowCredentials(true);
-	            }
-	        };
-	  
-	 }
 }
