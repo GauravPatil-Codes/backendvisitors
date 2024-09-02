@@ -71,6 +71,9 @@ public class VisitorsServiceImpl implements VisitorsService {
 	        existingVisitor.setUpdatedAt(LocalDateTime.now());
 	        existingVisitor.setPassword(visitors.getPassword());
 	        existingVisitor.setDocument(visitors.getDocument());
+	        existingVisitor.setMeetingDuration(visitors.getMeetingDuration());
+	        existingVisitor.setRemark(visitors.getRemark());
+
 
 	        return visitorsRepository.save(existingVisitor);
 	    } else {
@@ -121,6 +124,17 @@ public class VisitorsServiceImpl implements VisitorsService {
 	        return visitorsRepository.findByAppointmentstartDateTimeBetween(from, to, pageable);
 	    }
 
+		
 
+		@Override
+		public boolean isTimeSlotAvailable(LocalDateTime start, int meetingDuration) {
+				LocalDateTime end = start.plusMinutes(meetingDuration);
+	
+				List<Visitors> overlappingVisitors = visitorsRepository
+				.findByAppointmentstartDateTimeLessThanEqualAndAppointmentendDateTimeGreaterThanEqual(end, start);
+			return overlappingVisitors.isEmpty();
+		}
 
+		
+	
 }

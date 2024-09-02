@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,15 +30,33 @@ public class AuthController {
         return ResponseEntity.ok(registeredVisitor);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String contactNumber, @RequestParam String password) {
-        Optional<Visitors> visitorOpt = authServiceImpl.login(contactNumber, password);
+//     @PostMapping("/login")
+//     public ResponseEntity<?> login(@RequestParam String contactNumber, @RequestParam String password) {
+//         Optional<Visitors> visitorOpt = authServiceImpl.login(contactNumber, password);
 
-        if (visitorOpt.isPresent()) {
-            Visitors visitor = visitorOpt.get();
-            return ResponseEntity.ok("Login successful for role: " + visitor.getRole());
-        } else {
-            return ResponseEntity.status(401).body("Invalid credentials");
-        }
+//         if (visitorOpt.isPresent()) {
+//             Visitors visitor = visitorOpt.get();
+//             return ResponseEntity.ok("Login successful for role: " + visitor.getRole());
+//         } else {
+//             return ResponseEntity.status(401).body("Invalid credentials");
+//         }
+//     }
+// }
+@PostMapping("/login")
+public ResponseEntity<Map<String, Object>> login(@RequestParam String contactNumber, @RequestParam String password) {
+    Optional<Visitors> visitorOpt = authServiceImpl.login(contactNumber, password);
+
+    Map<String, Object> response = new HashMap<>();
+    if (visitorOpt.isPresent()) {
+        Visitors visitor = visitorOpt.get();
+        response.put("data", Collections.singletonMap("message", "Login successfully done"));
+        response.put("status", "200");
+        return ResponseEntity.ok(response);
+    } else {
+        response.put("data", Collections.singletonMap("message", "Invalid credentials"));
+        response.put("status", "401");
+        return ResponseEntity.status(401).body(response);
     }
+}
+
 }

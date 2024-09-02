@@ -22,4 +22,5 @@ public interface VisitorsService {
 	Page<Visitors>getAllApprovedVisitors(Pageable pageable);
 	Page<Visitors> getAllRejectedVisitors(Pageable pageable);
 	Page<Visitors> getPastVisitors(LocalDateTime from, LocalDateTime to, Pageable pageable);
+	boolean isTimeSlotAvailable(LocalDateTime start, int meetingDuration);
 }

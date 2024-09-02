@@ -23,5 +23,6 @@ public interface VisitorsRepository extends MongoRepository<Visitors, String> {
 
     Optional<Visitors> findByContactNumber(String contactNumber);
 	
-
+	List<Visitors> findByAppointmentstartDateTimeLessThanEqualAndAppointmentendDateTimeGreaterThanEqual(
+        LocalDateTime start, LocalDateTime end);
 }
