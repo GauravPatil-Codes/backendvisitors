@@ -1,6 +1,9 @@
 package com.minister.visitorsapp.controllers;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,5 +93,25 @@ public class VisitorsController {
         Pageable pageable) {
         return visitorsServiceImpl.getPastVisitors(from, to, pageable);
     }
+	
+	
+	@GetMapping("/check-availability")
+    public ResponseEntity<Map<String, Object>> checkTimeSlotAvailability(
+        @RequestParam("start") LocalDateTime start,
+        @RequestParam("duration") int meetingDuration) {
 
+        Map<String, Object> response = new HashMap<>();
+
+        boolean isAvailable = visitorsServiceImpl.isTimeSlotAvailable(start, meetingDuration);
+
+        if (isAvailable) {
+            response.put("data", Collections.singletonMap("message", "Time slot is available"));
+            response.put("status", "200");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("data", Collections.singletonMap("message", "Time slot is not available"));
+            response.put("status", "409"); // 409 Conflict status
+            return ResponseEntity.status(409).body(response);
+        }
+    }
 }
