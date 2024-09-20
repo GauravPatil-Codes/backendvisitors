@@ -37,6 +37,7 @@ public class Visitors {
     private String status; // Pending, Approved, Rejected
 	private String meetingStatus; // done / pending / unresolved/resheduled /
     private String role; //admin, visitor
+	private String adminRemark;
     private String remark; 
     private int meetingDuration; //minutes
     private String document;
@@ -173,8 +174,8 @@ public class Visitors {
 	public String getMeetingStatus(){
 		return meetingStatus;
 	}
-	public void setMeetingStatus(){
-		this.meetingStatus=meetingStatus;
+	public void setMeetingStatus(String meetingStatus){
+		this.meetingStatus =meetingStatus;
 	}
 
 	public String getRole() {
@@ -183,6 +184,12 @@ public class Visitors {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getAdminRemark(){
+		return adminRemark;
+	}
+	public void setAdminRemark(String adminRemark){
+       this.adminRemark = adminRemark;
 	}
 
 	public String getRemark() {

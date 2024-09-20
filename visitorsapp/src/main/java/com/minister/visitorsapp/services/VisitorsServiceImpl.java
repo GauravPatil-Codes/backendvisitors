@@ -67,11 +67,13 @@ public class VisitorsServiceImpl implements VisitorsService {
 	        existingVisitor.setOfficialAddress(visitors.getOfficialAddress());
 	        existingVisitor.setGrievanceDetails(visitors.getGrievanceDetails());
 	        existingVisitor.setStatus(visitors.getStatus());
+			existingVisitor.setMeetingStatus(visitors.getMeetingStatus());
 	        existingVisitor.setRole(visitors.getRole());
 	        existingVisitor.setUpdatedAt(LocalDateTime.now());
 	        existingVisitor.setPassword(visitors.getPassword());
 	        existingVisitor.setDocument(visitors.getDocument());
 	        existingVisitor.setMeetingDuration(visitors.getMeetingDuration());
+			existingVisitor.setAdminRemark(visitors.getAdminRemark());	
 	        existingVisitor.setRemark(visitors.getRemark());
 
 
