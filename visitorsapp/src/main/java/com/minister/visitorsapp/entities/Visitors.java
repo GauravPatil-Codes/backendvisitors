@@ -35,6 +35,7 @@ public class Visitors {
     private String grievanceDetails;
     
     private String status; // Pending, Approved, Rejected
+	private String meetingStatus; // done / pending / unresolved/resheduled /
     private String role; //admin, visitor
     private String remark; 
     private int meetingDuration; //minutes
@@ -169,6 +170,12 @@ public class Visitors {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getMeetingStatus(){
+		return meetingStatus;
+	}
+	public void setMeetingStatus(){
+		this.meetingStatus=meetingStatus;
+	}
 
 	public String getRole() {
 		return role;
@@ -229,7 +236,7 @@ public class Visitors {
 	public Visitors(String id, String fullName, int age, String gender, String contactNumber, String emailAddress,
 			String purposeOfVisit, LocalDateTime appointmentstartDateTime, LocalDateTime appointmentendDateTime,
 			String departmentName, String organizationName, String designation, String officialAddress,
-			String grievanceDetails, String status, String role, String remark, int meetingDuration,
+			String grievanceDetails, String status, String meetingStatus,String role, String remark, int meetingDuration,
 			String document, String password, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
@@ -247,6 +254,7 @@ public class Visitors {
 		this.officialAddress = officialAddress;
 		this.grievanceDetails = grievanceDetails;
 		this.status = status;
+		this.meetingStatus=meetingStatus;
 		this.role = role;
 		this.remark = remark;
 		this.meetingDuration = meetingDuration;
@@ -268,7 +276,7 @@ public class Visitors {
 				+ purposeOfVisit + ", appointmentstartDateTime=" + appointmentstartDateTime
 				+ ", appointmentendDateTime=" + appointmentendDateTime + ", departmentName=" + departmentName
 				+ ", organizationName=" + organizationName + ", designation=" + designation + ", officialAddress="
-				+ officialAddress + ", grievanceDetails=" + grievanceDetails + ", status=" + status + ", role=" + role
+				+ officialAddress + ", grievanceDetails=" + grievanceDetails + ", status=" + status + ",meetingStatus="+meetingStatus+", role=" + role
 				+ ", remark=" + remark + ", meetingDuration=" + meetingDuration + ", document=" + document
 				+ ", password=" + password + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
