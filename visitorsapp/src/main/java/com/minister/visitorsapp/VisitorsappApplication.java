@@ -26,7 +26,10 @@ public class VisitorsappApplication {
                        "https://mumbailocal.org/",
                        "http://localhost:3000/visitors.php",
                        "http://localhost",
-                       "https://localhost"
+                       "https://localhost",
+                       "http://127.0.0.1:5500/index.html",
+                       "http://localhost:5500/index.html",
+                       "http://localhost:5500"
                    )
                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                    .allowedHeaders("*")
