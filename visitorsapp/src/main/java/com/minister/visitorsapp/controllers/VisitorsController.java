@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,22 +39,69 @@ public class VisitorsController {
 
   @Autowired
     private EmailService emailService;
-
+	
 	@PostMapping("/sendQueryEmail")
-public String sendQueryEmail(@RequestBody Visitors visitor) {
-    if (visitor.getQuerySolvingDepartment() == null || visitor.getQuerySolvingDepartment().isEmpty()) {
-        return "Error: Department email is required.";
-    }
+	public ResponseEntity<String> sendQueryEmail(@RequestBody Visitors visitor) {
+		if (visitor.getQuerySolvingDepartment() == null || visitor.getQuerySolvingDepartment().isEmpty()) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Department email is required.");
+		}
+	
+		// Prepare email subject and body
+		String subject = "Query Redirect: " + visitor.getFullName() + " - " + visitor.getPurposeOfVisit();
+	
+		String body = String.format(
+			"%s,\n\nWe have received a query from a user on our website that pertains to your department.\n\n"
+			+ "Below are the details of the user and their query:\n\n"
+			+ "User's Name: %s\nQuery: %s\n\n"
+			+ "Kindly address the user's concern at your earliest convenience. Should you need any additional information, feel free to reach out.\n\n"
+			+ "Thank you for your prompt attention to this matter.\n\n"
+			+ "Best regards,\n%s",
+			visitor.getQuerysolvingdepartmentName(),  // 1st %s
+			visitor.getFullName(),                    // 2nd %s
+			visitor.getPurposeOfVisit(),              // 3rd %s
+			visitor.getOrganizationName()             // 4th %s
+		);
+	
+		// Send the email
+		try {
+			emailService.sendEmail(visitor.getQuerySolvingDepartment(), subject, body);
+			return ResponseEntity.status(HttpStatus.OK).body("Email sent successfully to " + visitor.getQuerySolvingDepartment());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending email: " + e.getMessage());
+		}
+	}
+	
+// @PostMapping("/sendQueryEmail")
+// public ResponseEntity<String> sendQueryEmail(@RequestBody Visitors visitor) {
+//     if (visitor.getQuerySolvingDepartment() == null || visitor.getQuerySolvingDepartment().isEmpty()) {
+//         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Department email is required.");
+//     }
 
-    String email = "madhuri.k@kitintellect.com"; 
-    String subject = "This query is related to your department";
-    String body = visitor.getPurposeOfVisit(); 
+//     // Prepare email subject and body
+//     String subject = "Query Redirect: " + visitor.getFullName() + " - " + visitor.getPurposeOfVisit();
 
-    // Sending the email
-    emailService.sendEmail(visitor.getQuerySolvingDepartment(), subject, body);
+//     String body = String.format(
+//         "%s,\n\nWe have received a query from a user on our website that pertains to your department.\n\n"
+//         + "Below are the details of the user and their query:\n\n"
+//         + "User's Name: %s\nQuery: %s\n\n"
+//         + "Kindly address the user's concern at your earliest convenience. Should you need any additional information, feel free to reach out.\n\n"
+//         + "Thank you for your prompt attention to this matter.\n\n"
+//         + "Best regards,\n%s\n%s",
+//         visitor.getQuerysolvingdepartmentName(),  // 1st %s
+//         visitor.getFullName(),                    // 2nd %s
+//         visitor.getPurposeOfVisit(),              // 3rd %s
+//         visitor.getOrganizationName()           // 4th %s
+      
+//     );
 
-    return "Email sent to " + visitor.getQuerySolvingDepartment();
-}
+//     // Send the email
+//     try {
+//         emailService.sendEmail(visitor.getQuerySolvingDepartment(), subject, body);
+//         return ResponseEntity.status(HttpStatus.OK).body("Email sent successfully to " + visitor.getQuerySolvingDepartment());
+//     } catch (Exception e) {
+//         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending email: " + e.getMessage());
+//     }
+// }
 
 		
 	@PostMapping("/addvisitor")
