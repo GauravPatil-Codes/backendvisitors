@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.minister.visitorsapp.entities.Visitors;
 import com.minister.visitorsapp.helpers.PaginatedResponse;
+import com.minister.visitorsapp.services.EmailService;
 import com.minister.visitorsapp.services.VisitorsServiceImpl;
 
 
@@ -34,6 +35,25 @@ public class VisitorsController {
 	
 	@Autowired
 	PaginatedResponse paginatedResponse;
+
+  @Autowired
+    private EmailService emailService;
+
+	@PostMapping("/sendQueryEmail")
+public String sendQueryEmail(@RequestBody Visitors visitor) {
+    if (visitor.getQuerySolvingDepartment() == null || visitor.getQuerySolvingDepartment().isEmpty()) {
+        return "Error: Department email is required.";
+    }
+
+    String email = "madhuri.k@kitintellect.com"; 
+    String subject = "This query is related to your department";
+    String body = visitor.getPurposeOfVisit(); 
+
+    // Sending the email
+    emailService.sendEmail(visitor.getQuerySolvingDepartment(), subject, body);
+
+    return "Email sent to " + visitor.getQuerySolvingDepartment();
+}
 
 		
 	@PostMapping("/addvisitor")
