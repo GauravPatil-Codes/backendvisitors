@@ -58,6 +58,7 @@ public class VisitorsServiceImpl implements VisitorsService {
 	        existingVisitor.setEmailAddress(visitors.getEmailAddress());
 	        existingVisitor.setPurposeOfVisit(visitors.getPurposeOfVisit());
 	        existingVisitor.setAppointmentstartDateTime(visitors.getAppointmentstartDateTime());
+			existingVisitor.setQuerysolvingdepartmentName(visitors.getQuerysolvingdepartmentName());
 	        
 	        // Calculate and set appointment end time
 	        if (visitors.getMeetingDuration() > 0) {

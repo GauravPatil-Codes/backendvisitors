@@ -30,6 +30,7 @@ public class Visitors {
     
     private String departmentName;
 	private String querysolvingdepartment;
+	private String querysolvingdepartmentName;
     private String organizationName;
     private String designation;
     private String officialAddress;
@@ -131,6 +132,13 @@ public class Visitors {
 
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
+	}
+	public String getQuerysolvingdepartmentName() {
+		return querysolvingdepartmentName;
+	}
+
+	public void setQuerysolvingdepartmentName(String querysolvingdepartmentName) {
+		this.querysolvingdepartmentName = querysolvingdepartmentName;
 	}
 	public String getQuerySolvingDepartment(){
 		return querysolvingdepartment;
@@ -249,7 +257,7 @@ public class Visitors {
 
 	public Visitors(String id, String fullName, int age, String gender, String contactNumber, String emailAddress,
 			String purposeOfVisit, LocalDateTime appointmentstartDateTime, LocalDateTime appointmentendDateTime,
-			String departmentName,String querysolvingdepartment, String organizationName, String designation, String officialAddress,
+			String departmentName,String querysolvingdepartment,String querysolvingdepartmentName, String organizationName, String designation, String officialAddress,
 			String grievanceDetails, String status, String meetingStatus,String role, String remark, int meetingDuration,
 			String document, String password, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
@@ -264,6 +272,7 @@ public class Visitors {
 		this.appointmentendDateTime = appointmentendDateTime;
 		this.departmentName = departmentName;
 		this.querysolvingdepartment =querysolvingdepartment;
+		this.querysolvingdepartmentName=querysolvingdepartmentName;
 		this.organizationName = organizationName;
 		this.designation = designation;
 		this.officialAddress = officialAddress;
@@ -290,7 +299,7 @@ public class Visitors {
 				+ ", contactNumber=" + contactNumber + ", emailAddress=" + emailAddress + ", purposeOfVisit="
 				+ purposeOfVisit + ", appointmentstartDateTime=" + appointmentstartDateTime
 				+ ", appointmentendDateTime=" + appointmentendDateTime + ", departmentName=" + departmentName
-				+ ",querysolvingdepartment="+querysolvingdepartment+", organizationName=" + organizationName + ", designation=" + designation + ", officialAddress="
+				+ ",querysolvingdepartment="+querysolvingdepartment+",querysolvingdepartmentName="+querysolvingdepartmentName+" organizationName=" + organizationName + ", designation=" + designation + ", officialAddress="
 				+ officialAddress + ", grievanceDetails=" + grievanceDetails + ", status=" + status + ",meetingStatus="+meetingStatus+", role=" + role
 				+ ", remark=" + remark + ", meetingDuration=" + meetingDuration + ", document=" + document
 				+ ", password=" + password + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
