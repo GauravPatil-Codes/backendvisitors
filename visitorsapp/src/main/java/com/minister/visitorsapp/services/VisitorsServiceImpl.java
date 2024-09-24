@@ -14,12 +14,16 @@ import org.springframework.stereotype.Service;
 
 import com.minister.visitorsapp.entities.Visitors;
 import com.minister.visitorsapp.repos.VisitorsRepository;
+// import org.springframework.mail.SimpleMailMessage;
+// import org.springframework.mail.javamail.JavaMailSender;
 
 @Service
 public class VisitorsServiceImpl implements VisitorsService {
 
 	@Autowired
 	VisitorsRepository visitorsRepository;
+// 	@Autowired
+// private JavaMailSender mailSender;
 	
 	@Override
 	public Visitors CreateVisitors(Visitors visitors) {
@@ -62,6 +66,7 @@ public class VisitorsServiceImpl implements VisitorsService {
 	        }
 
 	        existingVisitor.setDepartmentName(visitors.getDepartmentName());
+			existingVisitor.setQuerySolvingDepartment(visitors.getQuerySolvingDepartment());
 	        existingVisitor.setOrganizationName(visitors.getOrganizationName());
 	        existingVisitor.setDesignation(visitors.getDesignation());
 	        existingVisitor.setOfficialAddress(visitors.getOfficialAddress());
