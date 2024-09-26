@@ -21,7 +21,7 @@ public class Visitors {
     private String contactNumber;
     private String emailAddress;
     private String purposeOfVisit;
-    
+    private String image;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime appointmentstartDateTime;
     
@@ -108,6 +108,12 @@ public class Visitors {
 
 	public void setPurposeOfVisit(String purposeOfVisit) {
 		this.purposeOfVisit = purposeOfVisit;
+	}
+	public String getImage(){
+		return image;
+	}
+	public void setImage(String image){
+		this.image=image;
 	}
 
 	public LocalDateTime getAppointmentstartDateTime() {
@@ -256,7 +262,7 @@ public class Visitors {
 	}
 
 	public Visitors(String id, String fullName, int age, String gender, String contactNumber, String emailAddress,
-			String purposeOfVisit, LocalDateTime appointmentstartDateTime, LocalDateTime appointmentendDateTime,
+			String purposeOfVisit, String image,LocalDateTime appointmentstartDateTime, LocalDateTime appointmentendDateTime,
 			String departmentName,String querysolvingdepartment,String querysolvingdepartmentName, String organizationName, String designation, String officialAddress,
 			String grievanceDetails, String status, String meetingStatus,String role, String remark, int meetingDuration,
 			String document, String password, LocalDateTime createdAt, LocalDateTime updatedAt) {
@@ -268,6 +274,7 @@ public class Visitors {
 		this.contactNumber = contactNumber;
 		this.emailAddress = emailAddress;
 		this.purposeOfVisit = purposeOfVisit;
+		this.image=image;
 		this.appointmentstartDateTime = appointmentstartDateTime;
 		this.appointmentendDateTime = appointmentendDateTime;
 		this.departmentName = departmentName;
@@ -297,7 +304,7 @@ public class Visitors {
 	public String toString() {
 		return "Visitors [id=" + id + ", fullName=" + fullName + ", age=" + age + ", gender=" + gender
 				+ ", contactNumber=" + contactNumber + ", emailAddress=" + emailAddress + ", purposeOfVisit="
-				+ purposeOfVisit + ", appointmentstartDateTime=" + appointmentstartDateTime
+				+ purposeOfVisit + ",image="+image+", appointmentstartDateTime=" + appointmentstartDateTime
 				+ ", appointmentendDateTime=" + appointmentendDateTime + ", departmentName=" + departmentName
 				+ ",querysolvingdepartment="+querysolvingdepartment+",querysolvingdepartmentName="+querysolvingdepartmentName+" organizationName=" + organizationName + ", designation=" + designation + ", officialAddress="
 				+ officialAddress + ", grievanceDetails=" + grievanceDetails + ", status=" + status + ",meetingStatus="+meetingStatus+", role=" + role
