@@ -29,6 +29,8 @@ public class VisitorsappApplication {
                        "https://localhost",
                        "http://127.0.0.1:5500/index.html",
                        "http://localhost:5500/index.html",
+                       "http://127.0.0.1:5500/indexhindi.html",
+                       "http://localhost:5500/indexhindi.html",
                        "http://localhost:5500"
                    )
                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
